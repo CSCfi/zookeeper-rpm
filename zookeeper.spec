@@ -4,8 +4,8 @@
 %global zk_logdir  %{_var}/log/zookeeper
 %global zk_datadir %{_sharedstatedir}/zookeeper
 
-%{!?zk_version:%global zk_version 3.4.9}
-%{!?zk_release:%global zk_release 3}
+%{!?zk_version:%global zk_version 3.6.2}
+%{!?zk_release:%global zk_release 1}
 
 Summary: High-performance coordination service for distributed applications
 Name: zookeeper
@@ -14,7 +14,7 @@ Release: %{zk_release}%{?dist}
 License: ASL 2.0 and BSD
 Group: Applications/Databases
 URL: https://zookeeper.apache.org/
-Source0: https://www.apache.org/dyn/closer.cgi/zookeeper/zookeeper-%{version}/zookeeper-%{version}.tar.gz
+Source0: https://archive.apache.org/dist/zookeeper/zookeeper-%{version}/apache-zookeeper-%{version}-bin.tar.gz
 Source1: zookeeper.service
 Source2: zkcli
 Source3: zookeeper.logrotate
@@ -47,15 +47,19 @@ Provides check_zookeeper support for Nagios.
 
 
 %prep
-%setup -q
+%setup -q -n apache-%{name}-%{version}-bin
 
 %build
 
 %install
+# bin
+mkdir -p $RPM_BUILD_ROOT/usr/bin/
+install -p -m 0755 bin/*.sh $RPM_BUILD_ROOT/usr/bin/
+
 # JARs
 mkdir -p $RPM_BUILD_ROOT%{zk_prefix}
-install -p -m 0644 zookeeper-%{version}.jar lib/*.jar \
-  $RPM_BUILD_ROOT%{zk_prefix}/
+install -p -m 0644 lib/*.jar $RPM_BUILD_ROOT%{zk_prefix}/
+
 # Service, systemd fails to expand file paths in runtime
 mkdir -p $RPM_BUILD_ROOT%{_unitdir}
 CLASSPATH=
@@ -75,9 +79,6 @@ install -p -m 0644 %{S:5} %{S:6} %{S:7} conf/configuration.xsl \
 # Empty directories
 mkdir -p $RPM_BUILD_ROOT%{zk_logdir}
 mkdir -p $RPM_BUILD_ROOT%{zk_datadir}
-# Nagios plugin
-install -D -p -m 0755 src/contrib/monitoring/check_zookeeper.py \
-  $RPM_BUILD_ROOT%{_libdir}/nagios/plugins/check_zookeeper
 
 %pre
 /usr/bin/getent group zookeeper >/dev/null || /usr/sbin/groupadd -r zookeeper
@@ -99,15 +100,13 @@ fi
 %{zk_prefix}/
 %{_unitdir}/zookeeper.service
 %{_bindir}/zkcli
+%{_bindir}/*.sh
 %config(noreplace) %{_sysconfdir}/logrotate.d/zookeeper
 %config(noreplace) %{_sysconfdir}/sysconfig/zookeeper
 %dir %{zk_confdir}/
 %config(noreplace) %{zk_confdir}/*
 %attr(0755,zookeeper,zookeeper) %dir %{zk_logdir}/
 %attr(0700,zookeeper,zookeeper) %dir %{zk_datadir}/
-
-%files -n nagios-plugins-zookeeper
-%{_libdir}/nagios/plugins/check_zookeeper
 
 %changelog
 * Tue Nov 22 2016 Michał Lisowski <michal@exads.com> - 3.4.9-3

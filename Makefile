@@ -1,12 +1,11 @@
 .PHONY:	rpm clean
 
-VERSION ?= 3.4.10
-RELEASE ?= 2
-SOURCE = zookeeper-$(VERSION).tar.gz
+VERSION ?= 3.6.2
+RELEASE ?= 1
+SOURCE = apache-zookeeper-$(VERSION)-bin.tar.gz
 TOPDIR = /tmp/zookeeper-rpm
 PWD = $(shell pwd)
-URL = $(shell curl -s https://www.apache.org/dyn/closer.cgi/zookeeper/zookeeper-$(VERSION)/zookeeper-$(VERSION).tar.gz?asjson=1 | python -c 'import sys,json; data=json.load(sys.stdin); print data["preferred"] + data["path_info"]')
-
+URL = https://archive.apache.org/dist/zookeeper/zookeeper-$(VERSION)/$(SOURCE)
 rpm: $(SOURCE)
 	@rpmbuild -v -bb \
 			--define "_sourcedir $(PWD)" \
@@ -27,8 +26,9 @@ clean:
 	@rm -f $(SOURCE)
 
 $(SOURCE).asc:
-	@wget -q https://dist.apache.org/repos/dist/release/zookeeper/zookeeper-$(VERSION)/$(SOURCE).asc
+	@wget https://archive.apache.org/dist/zookeeper/zookeeper-$(VERSION)/$(SOURCE).asc
 
 KEYS:
-	@wget -q https://dist.apache.org/repos/dist/release/zookeeper/KEYS
+	@wget https://dist.apache.org/repos/dist/release/zookeeper/KEYS
 	gpg --import KEYS
+
