@@ -1,4 +1,4 @@
-Unit]
+[Unit]
 Description=Zookeeper
 After=network.target
 
