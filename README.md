@@ -1,7 +1,6 @@
 zookeeper-redhat7-rpm
 ---------
-A set of scripts to package zookeeper into an rpm.
-Requires CentOS/RedHat 7.
+This is a set of scripts to make zookepeer rpm package for CentOS/RedHat 7.
 
 Setup
 -----
