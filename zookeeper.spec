@@ -5,7 +5,7 @@
 %global zk_datadir %{_sharedstatedir}/zookeeper
 
 %{!?zk_version:%global zk_version 3.6.3}
-%{!?zk_release:%global zk_release 1}
+%{!?zk_release:%global zk_release 2}
 
 Summary: High-performance coordination service for distributed applications
 Name: zookeeper
@@ -25,7 +25,7 @@ Source7: log4j-cli.properties
 %{?systemd_requires}
 BuildRequires: systemd
 BuildArch: noarch
-Requires: java-headless
+Requires: jre-11-headless
 
 %description
 ZooKeeper is a high-performance coordination service for distributed
