@@ -10,7 +10,8 @@
 Summary: High-performance coordination service for distributed applications
 Name: zookeeper
 Version: %{zk_version}
-Release: %{zk_release}%{?dist}
+#Release: %{zk_release}%{?dist}
+Release: 2%{?dist}
 License: ASL 2.0 and BSD
 Group: Applications/Databases
 URL: https://zookeeper.apache.org/
