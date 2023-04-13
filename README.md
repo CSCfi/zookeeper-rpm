@@ -4,7 +4,7 @@ This is a set of scripts to make zookepeer rpm package for CentOS/RedHat 7.
 
 Setup
 -----
-    sudo yum install make rpmdevtools
+    sudo yum install make rpmdevtools wget
 
 Building
 --------
