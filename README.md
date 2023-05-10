@@ -1,6 +1,6 @@
 zookeeper-rpm
 ---------
-This is a set of scripts to make zookepeer rpm package for CentOS/RedHat 7 and looks like it works with RHEL 9 now too. RHEL 9 build runs with Java 17.
+This is a set of scripts to make zookepeer rpm package for CentOS/RedHat 7 and now also RHEL 9. RHEL 9 build runs with Java 17.
 
 Setup
 -----
