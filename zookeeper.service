@@ -6,7 +6,7 @@ After=network.target
 User=zookeeper
 EnvironmentFile=/etc/sysconfig/zookeeper
 Environment=CLASSPATH=@CLASSPATH@
-ExecStart=/bin/java -cp $CLASSPATH $LOG4J $JVMFLAGS $ZOOMAIN $ZOOCFG
+ExecStart=/bin/java -cp $CLASSPATH $LOGBACK $JVMFLAGS $ZOOMAIN $ZOOCFG
 SuccessExitStatus=143
 
 [Install]

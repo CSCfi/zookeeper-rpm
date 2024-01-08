@@ -5,7 +5,7 @@
 %global zk_datadir %{_sharedstatedir}/zookeeper
 
 %{!?zk_version:%global zk_version 3.8.3}
-%{!?zk_release:%global zk_release 1}
+%{!?zk_release:%global zk_release 2}
 
 Summary: High-performance coordination service for distributed applications
 Name: zookeeper
@@ -20,8 +20,7 @@ Source2: zkcli
 Source3: zookeeper.logrotate
 Source4: zookeeper.sysconfig
 Source5: zoo.cfg
-Source6: log4j.properties
-Source7: log4j-cli.properties
+Source6: logback.xml
 %{?systemd_requires}
 BuildRequires: systemd
 BuildArch: noarch
@@ -78,7 +77,7 @@ install -p -D -m 0755 %{S:2} $RPM_BUILD_ROOT%{_bindir}/zkcli
 install -p -D -m 0644 %{S:3} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/zookeeper
 install -p -D -m 0644 %{S:4} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/zookeeper
 mkdir -p $RPM_BUILD_ROOT%{zk_confdir}/
-install -p -m 0644 %{S:5} %{S:6} %{S:7} conf/configuration.xsl \
+install -p -m 0644 %{S:5} %{S:6} conf/configuration.xsl \
   $RPM_BUILD_ROOT%{zk_confdir}/
 # Empty directories
 mkdir -p $RPM_BUILD_ROOT%{zk_logdir}
