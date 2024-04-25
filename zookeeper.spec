@@ -106,10 +106,8 @@ fi
 %{_bindir}/*.sh
 %config(noreplace) %{_sysconfdir}/logrotate.d/zookeeper
 %config(noreplace) %{_sysconfdir}/sysconfig/zookeeper
-%dir %{zk_confdir}/
-%config(noreplace) %{zk_confdir}/*
 %attr(0755,zookeeper,zookeeper) %dir %{zk_confdir}/
-%attr(0644,zookeeper,zookeeper) %{zk_confdir}/*
+%attr(0644,zookeeper,zookeeper) %config(noreplace) %{zk_confdir}/*
 %attr(0755,zookeeper,zookeeper) %dir %{zk_logdir}/
 %attr(0700,zookeeper,zookeeper) %dir %{zk_datadir}/
 
