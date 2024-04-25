@@ -4,8 +4,8 @@
 %global zk_logdir  %{_var}/log/zookeeper
 %global zk_datadir %{_sharedstatedir}/zookeeper
 
-%{!?zk_version:%global zk_version 3.8.3}
-%{!?zk_release:%global zk_release 2}
+%{!?zk_version:%global zk_version 3.8.4}
+%{!?zk_release:%global zk_release 1}
 
 Summary: High-performance coordination service for distributed applications
 Name: zookeeper
