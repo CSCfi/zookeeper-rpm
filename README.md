@@ -1,6 +1,6 @@
 zookeeper-rpm
 ---------
-This is a set of scripts to make zookepeer rpm package for CentOS/RedHat 7 and now also RHEL 9. RHEL 9 build runs with Java 17. Logback logging is now used.
+This is a set of scripts to make zookepeer rpm package for CentOS/RedHat 9. RHEL 9 build runs with Java 17. Logback is used for logging.
 
 Setup
 -----
