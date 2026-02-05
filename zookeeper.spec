@@ -24,10 +24,14 @@ Source6: logback.xml
 %{?systemd_requires}
 BuildRequires: systemd
 BuildArch: noarch
-%if 0%{?rhel} > 8
+%if 0%{?rhel} == 8
 Requires: jre-17-headless
+%elif 0%{?rhel} == 9
+Requires: jre-17-headless
+%elif 0%{?rhel} == 10
+Requires: jre-21-headless
 %else
-Requires: jre-11-headless
+Requires: jre-17-headless
 %endif
 
 %description
