@@ -1,6 +1,6 @@
 .PHONY:	rpm clean
 
-VERSION ?= 3.8.5
+VERSION ?= 3.8.6
 RELEASE ?= 1
 SOURCE = apache-zookeeper-$(VERSION)-bin.tar.gz
 TOPDIR = /tmp/zookeeper-rpm
